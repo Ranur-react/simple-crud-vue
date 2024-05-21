@@ -9,6 +9,7 @@ import express from "express";
 import axios from "axios";
 
 const app = express();
+const port = 3000;
 app.use(express.json());
 
 const { WEBHOOK_VERIFY_TOKEN, GRAPH_API_TOKEN, PORT } = process.env;
@@ -85,6 +86,6 @@ app.get("/", (req, res) => {
 Checkout README.md to start.</pre>`);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is listening on port: ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is listening on port: ${port}`);
 });

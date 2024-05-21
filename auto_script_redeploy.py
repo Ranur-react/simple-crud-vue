@@ -17,8 +17,7 @@ def main():
         "docker rm node1",
         "docker rmi waweb-api",
         "docker build -t waweb-api .",
-        "docker run -d --name node1 -p 211:22 -p 3000:3000 waweb-api",
-        "docker logs -f node1"
+        "docker run -d --name node1 -p 211:22 -p 3000:3000 waweb-api"
     ]
 
     for command in commands:
