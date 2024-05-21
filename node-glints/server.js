@@ -16,6 +16,24 @@ app.use(express.json());
 const { WEBHOOK_VERIFY_TOKEN, GRAPH_API_TOKEN, PORT } = process.env;
 const port = PORT|| 3000;
 
+
+const RespondBuilderText=(body)=>{
+  let result;
+  if(body==="1"||body===1){
+    result="Menu 1"
+  }
+  else if (body === "2" || body === 2) {
+    result = "Menu 2"
+  }
+  else{
+    result = "Unfied meaning!"
+  }
+
+  return result;
+}
+
+
+
 app.post("/webhook", async (req, res) => {
   // log incoming messages
   console.log("Incoming webhook message:", JSON.stringify(req.body, null, 2));
@@ -29,7 +47,7 @@ app.post("/webhook", async (req, res) => {
     // extract the business number to send the reply from it
     const business_phone_number_id =
       req.body.entry?.[0].changes?.[0].value?.metadata?.phone_number_id;
-
+    const respondMessge = RespondBuilderText(message.text.body);
     // send a reply message as per the docs here https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages
     await axios({
       method: "POST",
@@ -40,7 +58,7 @@ app.post("/webhook", async (req, res) => {
       data: {
         messaging_product: "whatsapp",
         to: message.from,
-        text: { body: "Echo: " + message.text.body },
+        text: { body: "Reply: " + respondMessge },
         context: {
           message_id: message.id, // shows the message as a reply to the original user message
         },
