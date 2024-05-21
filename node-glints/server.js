@@ -7,12 +7,14 @@
 
 import express from "express";
 import axios from "axios";
-
+import dotenv from 'dotenv';
+// Load environment variables from .env file
+dotenv.config();
 const app = express();
 app.use(express.json());
 
 const { WEBHOOK_VERIFY_TOKEN, GRAPH_API_TOKEN, PORT } = process.env;
-const port = PORT;
+const port = PORT|| 3000;
 
 app.post("/webhook", async (req, res) => {
   // log incoming messages
