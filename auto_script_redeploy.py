@@ -4,7 +4,7 @@ def run_command(command):
     """Run a shell command and print its output."""
     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
     if result.returncode != 0:
-        print(f"Error running command: {command}")
+        print("Error running command: {}".format(command))
         print(result.stderr)
     else:
         print(result.stdout)
