@@ -1,0 +1,15 @@
+{
+  "name": "waweb-api-socket",
+  "version": "1.0.0",
+  "description": "that Node.js containers as the websocket while execute the whatsapp-web.js in Docker",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.23.0"
+  }
+}
+

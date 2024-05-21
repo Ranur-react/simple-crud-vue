@@ -1,0 +1,13 @@
+{
+  "name": "nodejs-ssh-docker",
+  "version": "1.0.0",
+  "description": "Node.js app with SSH and Git in Docker",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
+
