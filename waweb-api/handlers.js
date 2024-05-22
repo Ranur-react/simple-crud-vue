@@ -17,10 +17,15 @@ export const x = async (req, res) => {
             await axiosInstance.post(`${businessPhoneNumberId}/messages`, {
                 messaging_product: 'whatsapp',
                 to: message.from,
+                text: { body: 'Sebentar, kita carikan dahulu . . .'},
+                context: { message_id: message.id },
+            });
+            await axiosInstance.post(`${businessPhoneNumberId}/messages`, {
+                messaging_product: 'whatsapp',
+                to: message.from,
                 text: { body: 'Reply: ' + respondMessage },
                 context: { message_id: message.id },
             });
-
             await axiosInstance.post(`${businessPhoneNumberId}/messages`, {
                 messaging_product: 'whatsapp',
                 status: 'read',
