@@ -1,15 +1,21 @@
 {
-  "name": "waweb-api-socket",
-  "version": "1.0.0",
-  "description": "that Node.js containers as the websocket while execute the whatsapp-web.js in Docker",
-  "main": "app.js",
+  "name": "whatsapp-echo-webhook",
+  "version": "1.1.0",
+  "description": "An example WhatsApp webhook server https://developers.facebook.com/docs/whatsapp/sample-app-endpoints",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node app.js"
   },
+  "author": "WhatsApp Team",
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1",
-    "qrcode-terminal": "^0.12.0",
-    "whatsapp-web.js": "^1.23.0"
-  }
+    "axios": "^1.6.7",
+    "express": "^4.18.2",
+    "dotenv": "^10.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": []
 }
-
