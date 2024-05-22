@@ -1,4 +1,4 @@
-import express from 'express';
+import express from "express";
 import { handleWebhookPost, handleWebhookGet, handleRootGet } from './handlers.js';
 
 const router = express.Router();
