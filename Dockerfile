@@ -21,13 +21,13 @@ EXPOSE 22
 WORKDIR /usr/src/app
 
 # Install app dependencies
-COPY /node-glints/package*.json ./
-#COPY /waweb-api/package*.json ./
+# COPY /node-glints/package*.json ./
+COPY /waweb-api/package*.json ./
 RUN npm install
 
 # Bundle app source
-COPY /node-glints/. .
-# COPY /waweb-api/. .
+# COPY /node-glints/. .
+COPY /waweb-api/. .
 
 # Expose the Node.js app port
 EXPOSE 3000
