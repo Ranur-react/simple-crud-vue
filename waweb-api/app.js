@@ -1,4 +1,4 @@
-import express from 'express';
+import express from "express";
 import dotenv from "dotenv";
 import routes from "./routes.js"
 import { logRequests } from "./middleware.js"
