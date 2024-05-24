@@ -25,7 +25,7 @@ export const handleWebhookPost = async (req, res) => {
         const businessPhoneNumberId = req.body.entry?.[0]?.changes?.[0]?.value?.metadata?.phone_number_id;
         const userId = message.from;
         const userState = getUserState(userId);
-        const response = respondBuilderText(message.text.body, userState);
+        const response = respondBuilderText(message?.type != 'button' ? message.text.body : message.button.text, userState);
 console.log('==================[4]==================');
         console.log(response);
 console.log('====================================');
