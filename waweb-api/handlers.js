@@ -21,7 +21,7 @@ export const handleWebhookPost = async (req, res) => {
     console.log('===================[3]=================');
     console.log(WEBHOOK_VERIFY_TOKEN);
     console.log('====================================');
-    if (message?.type === 'text') {
+    if (message?.type === 'text' || message?.type === 'button') {
         const businessPhoneNumberId = req.body.entry?.[0]?.changes?.[0]?.value?.metadata?.phone_number_id;
         const userId = message.from;
         const userState = getUserState(userId);
@@ -29,20 +29,20 @@ export const handleWebhookPost = async (req, res) => {
 console.log('==================[4]==================');
         console.log(response);
 console.log('====================================');
-        // try {
-        //     await axiosInstance.post(`${businessPhoneNumberId}/messages`, {
-        //         messaging_product: 'whatsapp',
-        //         to: userId,
-        //         text: { body: response.text },
-        //         context: { message_id: message.id },
-        //     });
+        try {
+            await axiosInstance.post(`${businessPhoneNumberId}/messages`, {
+                messaging_product: 'whatsapp',
+                to: userId,
+                text: { body: response.text },
+                context: { message_id: message.id },
+            });
 
-        //     setUserState(userId, { currentState: response.nextState });
-        //     res.sendStatus(200);
-        // } catch (error) {
-        //     console.error('Error sending message:', error);
-        //     res.sendStatus(500);
-        // }
+            setUserState(userId, { currentState: response.nextState });
+            res.sendStatus(200);
+        } catch (error) {
+            console.error('Error sending message:', error);
+            res.sendStatus(500);
+        }
     } else {
         res.sendStatus(200);
     }
