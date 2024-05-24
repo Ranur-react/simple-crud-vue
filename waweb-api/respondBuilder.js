@@ -51,6 +51,12 @@ const respondBuilderText = (body, state = {}) => {
   };
 
   const key = `${state.currentState || ""}_${body}`.trim() || body;
+  console.log('=================[body]===================');
+  console.log(body);
+  console.log('====================================');
+  console.log('=================[Key]===================');
+  console.log(key);
+  console.log('====================================');
   return responses[key] || responses.default;
 };
 
