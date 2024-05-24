@@ -14,7 +14,7 @@ const setUserState = (userId, state) => userStates.set(userId, state);
 
 export const handleWebhookPost = async (req, res) => {
     const message = req.body.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
-
+    console.log('Received message:', message);
     if (message?.type === 'text') {
         const businessPhoneNumberId = req.body.entry?.[0]?.changes?.[0]?.value?.metadata?.phone_number_id;
         const userId = message.from;
