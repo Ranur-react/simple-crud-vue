@@ -50,7 +50,7 @@ const respondBuilderText = (body, state = {}) => {
     }
   };
 
-  const key = `${state.currentState || ""}_${body}`.trim() || body;
+  const key = `${state.currentState != "" ? state.currentState+"_":""}${body}`.trim() || body;
   console.log('=================[body]===================');
   console.log(body);
   console.log('====================================');
