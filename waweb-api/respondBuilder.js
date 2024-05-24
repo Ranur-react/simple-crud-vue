@@ -1,29 +1,57 @@
-const respondBuilderText = (body) => {
+const respondBuilderText = (body, state = {}) => {
   const responses = {
-    "1": "*1. Dimana lokasi Absensi seharusnya?*\n\n\
-      Lokasi mengambil absen yang dibenarkan sekolah adalah  :\n\
-      \t -Di depan Kelas \n\
-      \t -Di Gerbang Sekolah\n\
-      \t -Dan Dilapangan upacara\n\
-    ",
-    "2": "*2. Sudah berapa kali pelanggaran kamu?*\n\n\
-      pelanggaran kamu baru 3 kali nih  :\n\
-      \t -Terlambat masuk pada pukul 08:20 Kamis 24 April 2024\n\
-      \t -Terlalu cepat pulang pada pukul 12:20 Senin 27 April 2024\n\
-      \t -Terlambat masuk pada pukul 07:20 Sabtu 1 mei 2024\n\
-    ",
-    "3": "*3. Jadwal mata pelajaran hari ini.*\n\n\
-      jadwal hari ini adalah:\n\
-      \t -Matematika 08:20\n\
-      \t -Bahasa Indonesia\n\
-      \t -Terlambat masuk pada pukul 07:20 Sabtu 1 mei 2024\n\
-    ",
-    "4": "*4. Hukuman apa saja yang kamu terima jika telat mengambil absen?*\n\n\
-      Hukuman yang akan kamu terima jika telat adalah hukuman PANCUNG wkwkwk\n\
-    "
+    "/registrasi": {
+      text: "Selamat datang! Silakan pilih layanan:\n1. Daftar Layanan Gratis\n2. Daftar Layanan Premium",
+      nextState: "registrasiMenu"
+    },
+    "registrasiMenu_1": {
+      text: "Anda memilih Layanan Gratis. Pilih menu berikut:\n1. Daftarkan karyawan\n2. Blokir Karyawan\n3. Laporan Kehadiran Karyawan\n4. Atur Lokasi Absen",
+      nextState: "gratisMenu"
+    },
+    "registrasiMenu_2": {
+      text: "Anda memilih Layanan Premium. Pilih menu berikut:\n1. Daftarkan karyawan\n2. Blokir Karyawan\n3. Laporan Kehadiran Karyawan\n4. Atur Lokasi Absen",
+      nextState: "premiumMenu"
+    },
+    "gratisMenu_1": {
+      text: "Anda memilih untuk mendaftarkan karyawan. Proses pendaftaran dimulai...",
+      nextState: "registerEmployee"
+    },
+    "gratisMenu_2": {
+      text: "Anda memilih untuk memblokir karyawan. Proses pemblokiran dimulai...",
+      nextState: "blockEmployee"
+    },
+    "gratisMenu_3": {
+      text: "Anda memilih laporan kehadiran karyawan. Mengambil laporan...",
+      nextState: "attendanceReport"
+    },
+    "gratisMenu_4": {
+      text: "Anda memilih untuk mengatur lokasi absen. Mengatur lokasi...",
+      nextState: "setLocation"
+    },
+    "premiumMenu_1": {
+      text: "Anda memilih untuk mendaftarkan karyawan. Proses pendaftaran dimulai...",
+      nextState: "registerEmployee"
+    },
+    "premiumMenu_2": {
+      text: "Anda memilih untuk memblokir karyawan. Proses pemblokiran dimulai...",
+      nextState: "blockEmployee"
+    },
+    "premiumMenu_3": {
+      text: "Anda memilih laporan kehadiran karyawan. Mengambil laporan...",
+      nextState: "attendanceReport"
+    },
+    "premiumMenu_4": {
+      text: "Anda memilih untuk mengatur lokasi absen. Mengatur lokasi...",
+      nextState: "setLocation"
+    },
+    default: {
+      text: "Perintah tidak dikenali. Silakan coba lagi.",
+      nextState: state.currentState
+    }
   };
 
-  return responses[body] || "Undefined respond!";
+  const key = `${state.currentState || ""}_${body}`.trim() || body;
+  return responses[key] || responses.default;
 };
 
 export default respondBuilderText;

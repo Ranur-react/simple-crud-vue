@@ -6,32 +6,30 @@ dotenv.config();
 
 const { WEBHOOK_VERIFY_TOKEN } = process.env;
 
+const userStates = new Map(); // Untuk melacak state pengguna
+
+const getUserState = (userId) => userStates.get(userId) || { currentState: "" };
+
+const setUserState = (userId, state) => userStates.set(userId, state);
+
 export const handleWebhookPost = async (req, res) => {
     const message = req.body.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
 
     if (message?.type === 'text') {
         const businessPhoneNumberId = req.body.entry?.[0]?.changes?.[0]?.value?.metadata?.phone_number_id;
-        const respondMessage = respondBuilderText(message.text.body);
+        const userId = message.from;
+        const userState = getUserState(userId);
+        const response = respondBuilderText(message.text.body, userState);
 
         try {
             await axiosInstance.post(`${businessPhoneNumberId}/messages`, {
                 messaging_product: 'whatsapp',
-                to: message.from,
-                text: { body: 'Sebentar, kita carikan dahulu . . .'},
+                to: userId,
+                text: { body: response.text },
                 context: { message_id: message.id },
-            });
-            await axiosInstance.post(`${businessPhoneNumberId}/messages`, {
-                messaging_product: 'whatsapp',
-                to: message.from,
-                text: { body: 'Reply: ' + respondMessage },
-                context: { message_id: message.id },
-            });
-            await axiosInstance.post(`${businessPhoneNumberId}/messages`, {
-                messaging_product: 'whatsapp',
-                status: 'read',
-                message_id: message.id,
             });
 
+            setUserState(userId, { currentState: response.nextState });
             res.sendStatus(200);
         } catch (error) {
             console.error('Error sending message:', error);
