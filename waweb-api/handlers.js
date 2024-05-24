@@ -27,20 +27,20 @@ export const handleWebhookPost = async (req, res) => {
         const userState = getUserState(userId);
         const response = respondBuilderText(message.text.body, userState);
 
-        // try {
-        //     await axiosInstance.post(`${businessPhoneNumberId}/messages`, {
-        //         messaging_product: 'whatsapp',
-        //         to: userId,
-        //         text: { body: response.text },
-        //         context: { message_id: message.id },
-        //     });
+        try {
+            await axiosInstance.post(`${businessPhoneNumberId}/messages`, {
+                messaging_product: 'whatsapp',
+                to: userId,
+                text: { body: response.text },
+                context: { message_id: message.id },
+            });
 
-        //     setUserState(userId, { currentState: response.nextState });
-        //     res.sendStatus(200);
-        // } catch (error) {
-        //     console.error('Error sending message:', error);
-        //     res.sendStatus(500);
-        // }
+            setUserState(userId, { currentState: response.nextState });
+            res.sendStatus(200);
+        } catch (error) {
+            console.error('Error sending message:', error);
+            res.sendStatus(500);
+        }
     } else {
         res.sendStatus(200);
     }
