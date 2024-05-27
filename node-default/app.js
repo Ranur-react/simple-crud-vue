@@ -1,7 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const { connectDB } = require('./db.js');
-const { createEmployee, getEmployees, updateEmployee, deleteEmployee } = require('./employeeServices.js');
+const { createRole, createEmployee, getEmployees, updateEmployee, deleteEmployee } = require('./employeeServices.js');
 
 dotenv.config();
 const app = express();
@@ -12,10 +12,20 @@ const port = PORT || 3000;
 
 connectDB();
 
+app.post('/roles', async (req, res) => {
+    try {
+        const { roleName } = req.body;
+        const role = await createRole(roleName);
+        res.status(201).json(role);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.post('/employees', async (req, res) => {
     try {
-        const { name, role } = req.body;
-        const employee = await createEmployee(name, role);
+        const { name, roleId } = req.body;
+        const employee = await createEmployee(name, roleId);
         res.status(201).json(employee);
     } catch (error) {
         res.status(500).json({ error: error.message });

@@ -1,8 +1,17 @@
-const { Employee } = require('./db.js');
+const { Employee, Role } = require('./db.js');
 
-const createEmployee = async (name, role) => {
+const createRole = async (roleName) => {
     try {
-        const employee = await Employee.create({ name, role });
+        const role = await Role.create({ roleName });
+        return role;
+    } catch (error) {
+        throw new Error(`Error creating role: ${error.message}`);
+    }
+};
+
+const createEmployee = async (name, roleId) => {
+    try {
+        const employee = await Employee.create({ name, roleId });
         return employee;
     } catch (error) {
         throw new Error(`Error creating employee: ${error.message}`);
@@ -11,7 +20,7 @@ const createEmployee = async (name, role) => {
 
 const getEmployees = async () => {
     try {
-        const employees = await Employee.findAll();
+        const employees = await Employee.findAll({ include: Role });
         return employees;
     } catch (error) {
         throw new Error(`Error fetching employees: ${error.message}`);
@@ -42,4 +51,4 @@ const deleteEmployee = async (idEmployee) => {
     }
 };
 
-module.exports = { createEmployee, getEmployees, updateEmployee, deleteEmployee };
+module.exports = { createRole, createEmployee, getEmployees, updateEmployee, deleteEmployee };
