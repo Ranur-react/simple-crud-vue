@@ -11,7 +11,8 @@ const userStates = new Map(); // Untuk melacak state pengguna
 const getUserState = (userId) => userStates.get(userId) || { currentState: "" };
 
 const setUserState = (userId, state) => userStates.set(userId, state);
-
+//create function for send template with param
+// export const handleTemplatePost= async()=>
 export const handleWebhookPost = async (req, res) => {
     const message = req.body.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
     console.log('=================[1]===================');
