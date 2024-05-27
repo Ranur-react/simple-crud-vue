@@ -1,6 +1,6 @@
-import { Employee } from './db.js';
+const { Employee } = require('./db.js');
 
-export const createEmployee = async (name, role) => {
+const createEmployee = async (name, role) => {
     try {
         const employee = await Employee.create({ name, role });
         return employee;
@@ -9,7 +9,7 @@ export const createEmployee = async (name, role) => {
     }
 };
 
-export const getEmployees = async () => {
+const getEmployees = async () => {
     try {
         const employees = await Employee.findAll();
         return employees;
@@ -18,7 +18,7 @@ export const getEmployees = async () => {
     }
 };
 
-export const updateEmployee = async (idEmployee, updatedData) => {
+const updateEmployee = async (idEmployee, updatedData) => {
     try {
         const employee = await Employee.findByPk(idEmployee);
         if (!employee) throw new Error('Employee not found');
@@ -30,7 +30,7 @@ export const updateEmployee = async (idEmployee, updatedData) => {
     }
 };
 
-export const deleteEmployee = async (idEmployee) => {
+const deleteEmployee = async (idEmployee) => {
     try {
         const employee = await Employee.findByPk(idEmployee);
         if (!employee) throw new Error('Employee not found');
@@ -41,3 +41,5 @@ export const deleteEmployee = async (idEmployee) => {
         throw new Error(`Error deleting employee: ${error.message}`);
     }
 };
+
+module.exports = { createEmployee, getEmployees, updateEmployee, deleteEmployee };

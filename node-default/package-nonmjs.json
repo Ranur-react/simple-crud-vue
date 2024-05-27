@@ -1,6 +1,7 @@
 {
-  "name": "your-project-name",
+  "name": "nodejs-ssh-docker",
   "version": "1.0.0",
+  "description": "Node.js app with SSH and Git in Docker",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
@@ -9,7 +10,6 @@
     "express": "^4.19.2",
     "mysql2": "^3.9.8",
     "sequelize": "^6.37.3",
-    "dotenv": "^10.0.0",
     "sqlite3": "^5.1.7"
   }
 }
