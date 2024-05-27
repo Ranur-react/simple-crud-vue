@@ -1,13 +1,57 @@
-// app.js
-const express = require('express');
-const app = express();
-const port = 3000;
+import express from 'express';
+import dotenv from 'dotenv';
+import { connectDB } from './db.js';
+import { createEmployee, getEmployees, updateEmployee, deleteEmployee } from './employeeService.js';
 
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
+dotenv.config();
+const app = express();
+app.use(express.json());
+
+const { PORT } = process.env;
+const port = PORT || 3000;
+
+connectDB();
+
+app.post('/employees', async (req, res) => {
+  try {
+    const { name, role } = req.body;
+    const employee = await createEmployee(name, role);
+    res.status(201).json(employee);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/employees', async (req, res) => {
+  try {
+    const employees = await getEmployees();
+    res.status(200).json(employees);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.put('/employees/:id', async (req, res) => {
+  try {
+    const idEmployee = req.params.id;
+    const updatedData = req.body;
+    const employee = await updateEmployee(idEmployee, updatedData);
+    res.status(200).json(employee);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.delete('/employees/:id', async (req, res) => {
+  try {
+    const idEmployee = req.params.id;
+    await deleteEmployee(idEmployee);
+    res.status(204).send();
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`);
+  console.log(`Server is listening on port: ${port}`);
 });
-
