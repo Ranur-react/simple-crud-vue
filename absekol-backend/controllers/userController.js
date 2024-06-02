@@ -2,8 +2,8 @@ const { createUser,getUser,deleteUser,updateUser } = require('../services/userSe
 
 const creatUserController=async(req,res)=>{
     try {
-        const { email, password, nisn, noWa, roleId }=req.body;
-        const user = await createUser(email, password, nisn, noWa, roleId);
+        const { email, password, nisn, noWa, roleId, username }=req.body;
+        const user = await createUser(email, password, nisn, noWa, roleId, username);
         res.status(201).json(user);
     } catch (error) {
             res.status(500).json({ errors: error.errors ? error.errors[0].message : "undfined case :"+error.message,

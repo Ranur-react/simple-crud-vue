@@ -8,6 +8,21 @@ const User=sequelize.define('User',
         autoIncrement:true,
         allowNull:false
     },
+    username: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+            isLowercase: {
+                msg: "please field with lower text format "
+            },
+            noSpaces(value) {
+                if (/\s/.test(value)) {
+                    throw new Error('Name cannot contain spaces');
+                }
+            },
+        }
+    },
     email:{
         type:DataTypes.STRING,
         allowNull:false,
@@ -26,6 +41,7 @@ const User=sequelize.define('User',
     },
     nisn:{
         type:DataTypes.STRING(30),
+        unique: true,
     },
     token:{
         type:DataTypes.INTEGER(4)        

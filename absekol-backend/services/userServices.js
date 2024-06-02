@@ -1,10 +1,10 @@
 const User = require('../models/User');
 const Role = require('../models/Role');
 
-const createUser = async(email, password, nisn, noWa, roleId)=>{
+const createUser = async (email, password, nisn, noWa, roleId, username)=>{
 
     try {
-        const user = await User.create({ email, password, nisn, noWa, roleId });
+        const user = await User.create({ email, password, nisn, noWa, roleId, username });
         return user
     } catch (error) {
             throw error.errors ? error : new Error(`Error creating role: ${error.message}`);
