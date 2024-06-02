@@ -4,7 +4,6 @@ const User=sequelize.define('User',
 {
     uid:{
         type:DataTypes.INTEGER,
-        defaultValue: sequelize.UUID,
         primaryKey:true,
         autoIncrement:true,
         allowNull:false

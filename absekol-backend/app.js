@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const initializeDatabase= require('./models/initalizeModel')
 const roleRoutes = require('./routes/roleRoutes');
-// const employeeRoutes = require('./routes/employeeRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 dotenv.config();
 const app = express();
@@ -14,7 +14,7 @@ const port = PORT || 3000;
 initializeDatabase();
 
 app.use('/api', roleRoutes);
-// app.use('/api', employeeRoutes);
+app.use('/api', userRoutes);
 
 app.listen(port, () => {
     console.log(`Server is listening on port: ${port}`);

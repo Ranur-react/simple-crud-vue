@@ -5,7 +5,7 @@ const createRoleController=async(req,res)=>{
     try {
         const { roleName, detailRole}=req.body;
         const role = await createRole(roleName, detailRole);
-        res.status(201).json(role)
+        res.status(201).json(role);
     } catch (error) {
         res.status(500).json({error:error.message});
     }
