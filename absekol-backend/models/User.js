@@ -14,7 +14,7 @@ const User=sequelize.define('User',
         unique:true,
         validate:{
             isEmail:{
-                msg:"Mohon masukan email dengan format yang benar"
+                msg:"please field with correct mail format ex: user@domain.com "
             }
         }
     },
