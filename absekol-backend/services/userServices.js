@@ -7,7 +7,7 @@ const createUser = async (email, password, nisn, noWa, roleId, username)=>{
         const user = await User.create({ email, password, nisn, noWa, roleId, username });
         return user
     } catch (error) {
-            throw error.errors ? error : new Error(`Error creating role: ${error.message}`);
+            throw error.errors ? error : new Error(`Error creating : ${error.message}`);
     }
 }
 const getUser=async()=>{
@@ -15,7 +15,7 @@ const getUser=async()=>{
         const users = await User.findAll({ include: Role });
         return users;
     } catch (error) {
-        throw error.errors ? error : new Error(`Error creating role: ${error.message}`);
+        throw error.errors ? error : new Error(`Error fetchs : ${error.message}`);
     }
 }
 const updateUser = async (uid,updateData)=>{
@@ -25,7 +25,7 @@ const updateUser = async (uid,updateData)=>{
         await user.update(updateData)
         return user;
     } catch (error) {
-        throw error.errors ? error : new Error(`Error creating role: ${error.message}`);
+        throw error.errors ? error : new Error(`Error updating : ${error.message}`);
 
     }
 }
@@ -36,7 +36,7 @@ const deleteUser = async (uid) => {
         user.destroy();
         return true;
     } catch (error) {
-        throw error.errors ? error : new Error(`Error creating role: ${error.message}`);
+        throw error.errors ? error : new Error(`Error deleting: ${error.message}`);
     }
 }
 module.exports={getUser,createUser,updateUser,deleteUser}
