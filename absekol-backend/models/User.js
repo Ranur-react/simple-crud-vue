@@ -1,5 +1,6 @@
 const {sequelize,DataTypes} = require('../config/db');
-const Role =require('./Role');
+const Role = require('./Role');
+const Student = require('./Student');
 const User=sequelize.define('User',
 {
     uid:{
@@ -9,7 +10,7 @@ const User=sequelize.define('User',
         allowNull:false
     },
     username: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(50),
         allowNull: false,
         unique: true,
         validate: {
@@ -24,7 +25,7 @@ const User=sequelize.define('User',
         }
     },
     email:{
-        type:DataTypes.STRING,
+        type:DataTypes.STRING(50),
         allowNull:false,
         unique:true,
         validate:{
@@ -42,6 +43,10 @@ const User=sequelize.define('User',
     nisn:{
         type:DataTypes.STRING(30),
         unique: true,
+        references:{
+            model:Student,
+            key:'nisn'
+        }
     },
     token:{
         type:DataTypes.INTEGER(4)        
@@ -70,5 +75,8 @@ const User=sequelize.define('User',
 );
 Role.hasMany(User,{foreignKey:'roleId'})
 User.belongsTo(Role,{foreignKey:'roleId'})
+
+Student.hasMany(User,{foreignKey:'nisn'});
+User.belongsTo(Student,{foreignKey:'nisn'});
 
 module.exports=User;

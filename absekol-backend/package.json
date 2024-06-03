@@ -6,10 +6,11 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.19.2",
     "mysql2": "^3.9.8",
     "sequelize": "^6.37.3",
-    "dotenv": "^10.0.0",
     "sqlite3": "^5.1.7"
   }
 }

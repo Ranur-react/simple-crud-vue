@@ -1,5 +1,5 @@
-const User = require('../models/User');
-const Role = require('../models/Role');
+    const User = require('../models/User');
+    const Role = require('../models/Role');
 
 const createUser = async (email, password, nisn, noWa, roleId, username)=>{
 
@@ -33,7 +33,7 @@ const deleteUser = async (uid) => {
     try {
         const user = await User.findByPk(uid);
         if (!user) throw new Error(`delete failed, user uid ${uid} not found `)
-        user.destroy();
+        await user.destroy();
         return true;
     } catch (error) {
         throw error.errors ? error : new Error(`Error deleting: ${error.message}`);

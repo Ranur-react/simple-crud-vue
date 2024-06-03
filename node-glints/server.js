@@ -65,6 +65,7 @@ app.post("/webhook", async (req, res) => {
   // details on WhatsApp text message payload: https://developers.facebook.com/docs/whatsapp/cloud-api/webhooks/payload-examples#text-messages
   const message = req.body.entry?.[0]?.changes[0]?.value?.messages?.[0];
 
+  
   // check if the incoming message contains text
   if (message?.type === "text") {
     // extract the business number to send the reply from it
