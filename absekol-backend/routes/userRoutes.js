@@ -4,8 +4,8 @@ const {creatUserController,deleteUserController,getUserController,updateUserCont
 const route = express.Router();
 route.post('/users', creatUserController);
 route.get('/users', getUserController);
-route.put('users',updateUserController);
-route.delete('/users', deleteUserController);
+route.put('/users',updateUserController);
+route.delete('/users/:uid', deleteUserController);
 
 
 module.exports=route;

@@ -4,6 +4,7 @@ const cors = require('cors');
 const initializeDatabase= require('./models/initalizeModel')
 const roleRoutes = require('./routes/roleRoutes');
 const userRoutes = require('./routes/userRoutes');
+const studentRoutes = require('./routes/studentRouters');
 
 dotenv.config();
 const app = express();
@@ -28,6 +29,7 @@ const corsOptions = {
 
 app.use('/api', cors(corsOptions) ,roleRoutes);
 app.use('/api', cors(corsOptions), userRoutes);
+app.use('/api', cors(corsOptions), studentRoutes);
 
 app.listen(port, () => {
     console.log(`Server is listening on port: ${port}`);

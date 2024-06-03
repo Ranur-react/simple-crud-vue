@@ -13,7 +13,18 @@ const createStudent = async (raw) => {
 }
 const getStudent = async () => {
     try {
-        const students = await Student.findAll({ include: User });
+        const students = await Student.findAll(
+            {
+                include:
+                {
+                    model: User,
+                    include: {
+                        model: Role
+                    }
+                }
+
+            }
+        );
         return students;
     } catch (error) {
         throw error.errors ? error : new Error(`Error fetchs : ${error.message}`);
@@ -41,4 +52,4 @@ const deleteStudent = async (nisn) => {
         throw error.errors ? error : new Error(`Error deleting: ${error.message}`);
     }
 }
-module.exports={createStudent,getStudent,updateStudent,deleteStudent}
+module.exports = { createStudent, getStudent, updateStudent, deleteStudent }

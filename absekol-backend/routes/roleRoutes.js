@@ -5,6 +5,6 @@ const route = express.Router();
 
 route.post('/roles',createRoleController);
 route.get('/roles',getRoleController);
-route.delete('/roles',deleteRoleControler);
+route.delete('/roles/:idRole',deleteRoleControler);
 
 module.exports=route;
