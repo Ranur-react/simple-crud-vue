@@ -49,7 +49,7 @@ const User=sequelize.define('User',
         }
     },
     token:{
-        type:DataTypes.INTEGER(4)        
+        type:DataTypes.STRING(4)        
     },
     noWa:{
         type:DataTypes.STRING(14),
@@ -62,7 +62,7 @@ const User=sequelize.define('User',
             key: 'idRole'
         }
     },
-    tokenEpired:{
+    tokenExpired:{
         type:DataTypes.DATE
     }
 

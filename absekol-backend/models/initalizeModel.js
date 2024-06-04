@@ -10,8 +10,8 @@ const initializeDatabase = async()=>{
     try {
         await connectDB();
         await Role.sync();
-        await User.sync();
         await Student.sync();
+        await User.sync();
         await Attendance.sync();
         await NotificationLog.sync();
         await GpsLog.sync();
