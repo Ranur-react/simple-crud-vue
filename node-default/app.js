@@ -52,7 +52,7 @@ app.put('/employees/:id', async (req, res) => {
     }
 });
 
-app.delete('/employees/:id', async (req, res) => {
+app.delete('/employees/:idRole', async (req, res) => {
     try {
         const idEmployee = req.params.id;
         await deleteEmployee(idEmployee);

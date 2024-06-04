@@ -45,9 +45,9 @@ const updateStudent = async (nisn, raw) => {
 const deleteStudent = async (nisn) => {
     try {
         const student = await Student.findByPk(nisn);
-        if (!student) new Error(`delete failed, student nisn: '${nisn}' not found `)
+        if (!student) throw new Error(`delete failed, student nisn: '${nisn}' not found `)
         await student.destroy();
-        return student;
+        return true;
     } catch (error) {
         throw error.errors ? error : new Error(`Error deleting: ${error.message}`);
     }
