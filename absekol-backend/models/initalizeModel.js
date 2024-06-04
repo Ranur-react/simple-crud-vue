@@ -5,7 +5,6 @@ const Student = require('./Student')
 const Attendance = require('./Attendance');
 const NotificationLog = require('./notificationLog');
 const GpsLog = require('./GpsLog');
-const NotificationLog = require('./notificationLog');
 
 const initializeDatabase = async()=>{
     try {
