@@ -22,15 +22,17 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 # COPY /node-glints/package*.json ./
-COPY /waweb-api/package*.json ./
+# COPY /waweb-api/package*.json ./
+COPY /absekol-backend/package*.json ./
 RUN npm install
 
 # Bundle app source
 # COPY /node-glints/. .
-COPY /waweb-api/. .
+# COPY /waweb-api/. .
+COPY /absekol-backend/. .
 
 # Expose the Node.js app port
-EXPOSE 3000
+EXPOSE 3002
 
 # Start SSH and the Node.js app
 CMD service ssh start && npm start
