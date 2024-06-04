@@ -55,6 +55,6 @@ def obtain_ssl_certificate(subdomain, email):
     print("SSL certificate obtained for {}".format(subdomain))
 
 def main():
-    subdomain = "absekol-api.numpang.my.id"
+    subdomain = "api.numpang.my.id"
     proxy_address = "http://114.7.96.242:3002"
-    email = "
+    email = "rahmatnur844@gmail.com"
