@@ -5,7 +5,7 @@ FROM nginx:latest
 COPY /frontend-absekol/front-crud1/. /usr/share/nginx/html
 
 # Expose port yang digunakan oleh Nginx
-EXPOSE 80
+EXPOSE 83
 
 # Perintah default untuk menjalankan Nginx
 CMD ["nginx", "-g", "daemon off;"]
