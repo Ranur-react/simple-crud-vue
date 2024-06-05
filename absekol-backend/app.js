@@ -18,7 +18,7 @@ initializeDatabase();
 // CORS configuration for specific URL
 const corsOptions = {
     origin: function (origin, callback) {
-        const allowedOrigins = ['http://127.0.0.1:5500', 'https://vuejs.numpang.my.id', 'http://114.7.96.242:3003', 'https://simple-vue.numpang.my.id'];
+        const allowedOrigins = ['http://127.0.0.1:5500', 'https://vuejs.numpang.my.id', 'http://114.7.96.242:3003', 'https://waifu.numpang.my.id'];
         if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
             callback(null, true);
         } else {
