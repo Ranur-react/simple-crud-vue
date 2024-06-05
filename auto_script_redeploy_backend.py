@@ -17,7 +17,7 @@ def main():
         "docker rm node2",
         "docker rmi absekol-api",
         "docker build -t absekol-api Dockerfile-backend",
-        "docker run -d --name node1 -p 212:22 -p 3002:3002 absekol-api"
+        "docker run -d --name node2 -p 212:22 -p 3002:3002 absekol-api"
     ]
 
     for command in commands:
