@@ -17,7 +17,7 @@ def main():
         "docker rm node3",
         "docker rmi vue-service",
         "docker build -t vue-service .",
-        "docker run -d --name node3 -p 213:22 -p 80:3003 vue-service"
+        "docker run -d --name node3 -p 213:22 -p 3003:83 vue-service"
     ]
 
     for command in commands:
