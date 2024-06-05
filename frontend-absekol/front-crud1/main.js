@@ -40,6 +40,9 @@ const app = Vue.createApp({
                 console.error('Error deleting user:', error);
             }
         },
+        editUser(data){
+            alert(`Kamu belum bisa hapus user ${data.username}, saya belum sempat bkinnya hehe :D`)
+        },
         closeModal() {
             document.getElementById('closeModalCreat').click();
         }
