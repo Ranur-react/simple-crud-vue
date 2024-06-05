@@ -16,7 +16,7 @@ def main():
         "docker stop node2",
         "docker rm node2",
         "docker rmi absekol-api",
-        "docker build -t absekol-api Dockerfilebackend",
+        "docker build -t absekol-api .",
         "docker run -d --name node2 -p 212:22 -p 3002:3002 absekol-api"
     ]
 
