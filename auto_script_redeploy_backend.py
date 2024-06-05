@@ -13,11 +13,11 @@ def run_command(command):
 def main():
     commands = [
         "git pull",
-        "docker stop node3",
-        "docker rm node3",
-        "docker rmi vue-service",
-        "docker build -t vue-service .",
-        "docker run -d --name node3 -p 213:22 -p 80:3003 vue-service"
+        "docker stop node1",
+        "docker rm node1",
+        "docker rmi waweb-api",
+        "docker build -t waweb-api .",
+        "docker run -d --name node1 -p 211:22 -p 3000:3000 waweb-api"
     ]
 
     for command in commands:
