@@ -9,7 +9,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
-<body>
+<body data-bs-theme="dark">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -69,44 +69,75 @@
             </tbody>
         </table>
 
-
-            <div class="modal fade" id="ModalCreate" tabindex="-1" aria-labelledby="exampleModalLabel" :aria-hidden="modalCreate">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Create New User</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">Username </label>
-                                    <input type="text" v-model="input.username" class="form-control" id="username">
+        <!-- ModalCreate -->
+        <div class="modal fade" id="ModalCreate" tabindex="-1" aria-labelledby="exampleModalLabel"
+            :aria-hidden="modalCreate">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Create New User</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="username" class="form-label ">Username </label>
+                                <input type="text" v-model="input.username" class="form-control"
+                                    :class="formValidations.username.isInvalid?'is-invalid':''"
+                                    title="fill uniq username"
+                                    id="username">
+                                <div class="valid-feedback">
+                                    {{formValidations.username.validMessage}}
                                 </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" v-model="input.email" class="form-control" id="email">
+                                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                    {{formValidations.username.errorMessage}} (Code:
+                                    {{formValidations.httpRespondCode}})
                                 </div>
-                                <div class="mb-3">
-                                    <label for="noWa" class="form-label">No WhatsApp</label>
-                                    <input type="text" v-model="input.noWa" class="form-control" id="noWa">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" v-model="input.email"
+                                    :class="formValidations.email.isInvalid?'is-invalid':''" 
+                                    class="form-control"
+                                    id="email">
+                                <div class="valid-feedback">
+                                    {{formValidations.email.validMessage}}
                                 </div>
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">Password</label>
-                                    <input type="password" v-model="input.password" class="form-control" id="password">
+                                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                    {{formValidations.email.errorMessage}} (Code: {{formValidations.httpRespondCode}})
                                 </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModalCreat">Close</button>
-                            <button type="button" class="btn btn-primary" @click="createUser()">Save changes</button>
-                        </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="noWa" class="form-label">No WhatsApp</label>
+                                <input type="text" v-model="input.noWa"
+                                    :class="formValidations.noWa.isInvalid?'is-invalid':''" class="form-control"
+                                    id="noWa">
+                                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                    {{formValidations.noWa.errorMessage}} (Code: {{formValidations.httpRespondCode}})
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" v-model="input.password"
+                                    :class="formValidations.password.isInvalid?'is-invalid':''" class="form-control"
+                                    id="password">
+                                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                    {{formValidations.password.errorMessage}} (Code:
+                                    {{formValidations.httpRespondCode}})
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            id="closeModalCreat">Close</button>
+                        <button type="button" class="btn btn-primary" @click="createUser()">Save changes</button>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 
-    <!-- ModalCreate -->
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
